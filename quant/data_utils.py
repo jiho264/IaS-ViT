@@ -3,22 +3,50 @@ import torch.nn.functional as F
 from quant.quant_modules import *
 from quant.quant_model import set_quant_state
 
-def save_inp_oup_data(model, layer, teacher_model, T_module, cali_data: torch.Tensor,
-                      asym: bool = False, act_quant: bool = False,weight_quan:bool = False, batch_size: int = 32, keep_gpu: bool = True, last_stage: bool = False):
+
+def save_inp_oup_data(
+    model,
+    layer,
+    teacher_model,
+    T_module,
+    cali_data: torch.Tensor,
+    asym: bool = False,
+    act_quant: bool = False,
+    weight_quan: bool = False,
+    batch_size: int = 32,
+    keep_gpu: bool = True,
+    last_stage: bool = False,
+):
     """
     Save input data and output data of a particular layer/block over calibration dataset.
     """
     device = next(model.parameters()).device
     if last_stage:
-        get_inp_out_2 = GetLayerInpOut(model, layer, device=device, asym=asym, act_quant=act_quant, weight_quant=weight_quan)
-    get_inp_out = GetLayerInpOut_T(teacher_model, T_module, device=device, asym=asym, act_quant=act_quant, weight_quant=weight_quan)
+        get_inp_out_2 = GetLayerInpOut(
+            model,
+            layer,
+            device=device,
+            asym=asym,
+            act_quant=act_quant,
+            weight_quant=weight_quan,
+        )
+    get_inp_out = GetLayerInpOut_T(
+        teacher_model,
+        T_module,
+        device=device,
+        asym=asym,
+        act_quant=act_quant,
+        weight_quant=weight_quan,
+    )
     cached_batches = []
     torch.cuda.empty_cache()
 
     for i in range(int(cali_data.size(0) / batch_size)):
-        cur_inp, cur_out = get_inp_out(cali_data[i * batch_size:(i + 1) * batch_size])
+        cur_inp, cur_out = get_inp_out(cali_data[i * batch_size : (i + 1) * batch_size])
         if last_stage:
-            cur_inp_quan, cur_out_quan = get_inp_out_2(cali_data[i * batch_size:(i + 1) * batch_size]) # get the quan input of layer
+            cur_inp_quan, cur_out_quan = get_inp_out_2(
+                cali_data[i * batch_size : (i + 1) * batch_size]
+            )  # get the quan input of layer
             cached_batches.append((cur_inp_quan.cpu(), cur_out.cpu()))
         else:
             cached_batches.append((cur_inp.cpu(), cur_out.cpu()))
@@ -32,9 +60,15 @@ def save_inp_oup_data(model, layer, teacher_model, T_module, cali_data: torch.Te
     return cached_inps, cached_outs
 
 
-def save_grad_data(model, layer, cali_data: torch.Tensor,
-                   damping: float = 1., act_quant: bool = False, batch_size: int = 32,
-                   keep_gpu: bool = True):
+def save_grad_data(
+    model,
+    layer,
+    cali_data: torch.Tensor,
+    damping: float = 1.0,
+    act_quant: bool = False,
+    batch_size: int = 32,
+    keep_gpu: bool = True,
+):
     """
     Save gradient data of a particular layer/block over calibration dataset.
 
@@ -53,7 +87,7 @@ def save_grad_data(model, layer, cali_data: torch.Tensor,
     torch.cuda.empty_cache()
 
     for i in range(int(cali_data.size(0) / batch_size)):
-        cur_grad = get_grad(cali_data[i * batch_size:(i + 1) * batch_size])
+        cur_grad = get_grad(cali_data[i * batch_size : (i + 1) * batch_size])
         cached_batches.append(cur_grad.cpu())
 
     cached_grads = torch.cat([x for x in cached_batches])
@@ -69,6 +103,7 @@ class StopForwardException(Exception):
     """
     Used to throw and catch an exception to stop traversing the graph
     """
+
     pass
 
 
@@ -76,6 +111,7 @@ class DataSaverHook:
     """
     Forward hook that stores the input and output of a block
     """
+
     def __init__(self, store_input=False, store_output=False, stop_forward=False):
         self.store_input = store_input
         self.store_output = store_output
@@ -94,20 +130,28 @@ class DataSaverHook:
 
 
 class GetLayerInpOut:
-    def __init__(self, model, layer,
-                 device: torch.device, asym: bool = False, act_quant: bool = False,weight_quant: bool = False):
+    def __init__(
+        self,
+        model,
+        layer,
+        device: torch.device,
+        asym: bool = False,
+        act_quant: bool = False,
+        weight_quant: bool = False,
+    ):
         self.model = model
         self.layer = layer
         self.asym = asym
         self.device = device
         self.act_quant = act_quant
         self.weight_quant = weight_quant
-        self.data_saver = DataSaverHook(store_input=True, store_output=True, stop_forward=True)
+        self.data_saver = DataSaverHook(
+            store_input=True, store_output=True, stop_forward=True
+        )
 
     def __call__(self, model_input):
         self.model.eval()
         set_quant_state(self.model, True, True)
-        
 
         handle = self.layer.register_forward_hook(self.data_saver)
         with torch.no_grad():
@@ -117,23 +161,36 @@ class GetLayerInpOut:
                 pass
         handle.remove()
 
-        set_quant_state(self.layer, weight_quant=self.weight_quant, input_quant=self.act_quant)
+        set_quant_state(
+            self.layer, weight_quant=self.weight_quant, input_quant=self.act_quant
+        )
         self.model.train()
 
-        return self.data_saver.input_store[0].detach(), self.data_saver.output_store.detach()
-
+        return (
+            self.data_saver.input_store[0].detach(),
+            self.data_saver.output_store.detach(),
+        )
 
 
 class GetLayerInpOut_T:
-    def __init__(self, model, layer,
-                 device: torch.device, asym: bool = False, act_quant: bool = False,weight_quant: bool = False):
+    def __init__(
+        self,
+        model,
+        layer,
+        device: torch.device,
+        asym: bool = False,
+        act_quant: bool = False,
+        weight_quant: bool = False,
+    ):
         self.model = model
         self.layer = layer
         self.asym = asym
         self.device = device
         self.act_quant = act_quant
         self.weight_quant = weight_quant
-        self.data_saver = DataSaverHook(store_input=True, store_output=True, stop_forward=True)
+        self.data_saver = DataSaverHook(
+            store_input=True, store_output=True, stop_forward=True
+        )
 
     def __call__(self, model_input):
         self.model.eval()
@@ -147,19 +204,31 @@ class GetLayerInpOut_T:
         handle.remove()
         self.model.train()
 
-        return self.data_saver.input_store[0].detach(), self.data_saver.output_store.detach()
-    
+        return (
+            self.data_saver.input_store[0].detach(),
+            self.data_saver.output_store.detach(),
+        )
+
 
 class GetLayerInpOut_stage2:
-    def __init__(self, model, layer,
-                 device: torch.device, asym: bool = False, act_quant: bool = False,weight_quant: bool = False):
+    def __init__(
+        self,
+        model,
+        layer,
+        device: torch.device,
+        asym: bool = False,
+        act_quant: bool = False,
+        weight_quant: bool = False,
+    ):
         self.model = model
         self.layer = layer
         self.asym = asym
         self.device = device
         self.act_quant = act_quant
         self.weight_quant = weight_quant
-        self.data_saver = DataSaverHook(store_input=True, store_output=True, stop_forward=True)
+        self.data_saver = DataSaverHook(
+            store_input=True, store_output=True, stop_forward=True
+        )
 
     def __call__(self, model_input):
         self.model.eval()
@@ -175,6 +244,7 @@ class GetLayerInpOut_stage2:
 
         return model_input.detach(), self.data_saver.output_store.detach()
 
+
 class GradSaverHook:
     def __init__(self, store_grad=True):
         self.store_grad = store_grad
@@ -189,8 +259,7 @@ class GradSaverHook:
 
 
 class GetLayerGrad:
-    def __init__(self, model, layer,
-                 device: torch.device, act_quant: bool = False):
+    def __init__(self, model, layer, device: torch.device, act_quant: bool = False):
         self.model = model
         self.layer = layer
         self.device = device
@@ -216,7 +285,11 @@ class GetLayerGrad:
                 out_fp = self.model(inputs)
                 quantize_model_till(self.model, self.layer, self.act_quant)
                 out_q = self.model(inputs)
-                loss = F.kl_div(F.log_softmax(out_q, dim=1), F.softmax(out_fp, dim=1), reduction='batchmean')
+                loss = F.kl_div(
+                    F.log_softmax(out_q, dim=1),
+                    F.softmax(out_fp, dim=1),
+                    reduction="batchmean",
+                )
                 loss.backward()
             except StopForwardException:
                 pass
