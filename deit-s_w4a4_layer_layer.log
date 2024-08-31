@@ -1,0 +1,108 @@
+(py312) lee@AI-LAP:~/Desktop/IaS-ViT$ cd "/home/lee/Desktop/IaS-ViT/" && python3 -u test_quant.py
+Namespace(model='deit_small', dataset='data/ImageNet', calib_batchsize=1024, val_batchsize=200, num_workers=8, device='cuda', print_freq=100, seed=0, w_bits=4, a_bits=4, w_cw=False, a_cw=False, iter=1000, warmup=0.2)
+Building dataloader ...
+Building model ...
+quantization settings: {'n_bits': 4, 'channel_wise': False} | {'n_bits': 4, 'channel_wise': False}
+
+Stage One, Q-Act, FP-W
+Init quantization parameters of act
+Start optimization
+Reconstruction for layer proj
+Total loss:     0.000   count=500
+Total loss:     0.000   count=1000
+Reconstruction for block 0
+Total loss:     8.494   count=500
+Total loss:     8.224   count=1000
+Reconstruction for block 1
+Total loss:     2.827   count=500
+Total loss:     2.709   count=1000
+Reconstruction for block 2
+Total loss:     2.529   count=500
+Total loss:     2.470   count=1000
+Reconstruction for block 3
+Total loss:     2.347   count=500
+Total loss:     2.295   count=1000
+Reconstruction for block 4
+Total loss:     2.574   count=500
+Total loss:     2.513   count=1000
+Reconstruction for block 5
+Total loss:     3.401   count=500
+Total loss:     3.367   count=1000
+Reconstruction for block 6
+Total loss:     4.834   count=500
+Total loss:     4.707   count=1000
+Reconstruction for block 7
+Total loss:     4.123   count=500
+Total loss:     4.202   count=1000
+Reconstruction for block 8
+Total loss:     5.190   count=500
+Total loss:     4.939   count=1000
+Reconstruction for block 9
+Total loss:     4.555   count=500
+Total loss:     4.686   count=1000
+Reconstruction for block 10
+Total loss:     3.749   count=500
+Total loss:     3.615   count=1000
+Reconstruction for block 11
+Total loss:     4.277   count=500
+Total loss:     4.121   count=1000
+Reconstruction for layer head
+Total loss:     8.923   count=500
+Total loss:     8.789   count=1000
+Acc after Stage One: 
+Test: [0/250]   Time 3.012 (3.012)      Loss 0.6489 (0.6489)    Prec@1 84.000 (84.000)      Prec@5 98.000 (98.000)
+Test: [100/250] Time 0.403 (0.432)      Loss 1.2804 (0.8213)    Prec@1 68.500 (81.228)      Prec@5 90.500 (95.842)
+Test: [200/250] Time 0.403 (0.417)      Loss 0.4802 (1.0117)    Prec@1 89.500 (76.734)      Prec@5 97.500 (93.415)
+ * Prec@1 76.196 Prec@5 93.256 Time 103.679
+
+Stage Two, reparameterization
+Stage Three, Q-Act, Q-W
+Init quantization parameters of weight
+re optimization
+Reconstruction for layer proj
+Total loss:     5.113   count=500
+Total loss:     1.028   count=1000
+Reconstruction for block 0
+Total loss:     12.087  count=500
+Total loss:     9.792   count=1000
+Reconstruction for block 1
+Total loss:     12.800  count=500
+Total loss:     12.021  count=1000
+Reconstruction for block 2
+Total loss:     17.690  count=500
+Total loss:     16.678  count=1000
+Reconstruction for block 3
+Total loss:     23.758  count=500
+Total loss:     24.309  count=1000
+Reconstruction for block 4
+Total loss:     40.975  count=500
+Total loss:     40.342  count=1000
+Reconstruction for block 5
+Total loss:     71.133  count=500
+Total loss:     71.317  count=1000
+Reconstruction for block 6
+Total loss:     111.056         count=500
+Total loss:     116.343         count=1000
+Reconstruction for block 7
+Total loss:     150.475         count=500
+Total loss:     148.981         count=1000
+Reconstruction for block 8
+Total loss:     188.269         count=500
+Total loss:     188.521         count=1000
+Reconstruction for block 9
+Total loss:     221.281         count=500
+Total loss:     223.757         count=1000
+Reconstruction for block 10
+Total loss:     229.728         count=500
+Total loss:     229.582         count=1000
+Reconstruction for block 11
+Total loss:     233.631         count=500
+Total loss:     230.906         count=1000
+Reconstruction for layer head
+Total loss:     292.446         count=500
+Total loss:     289.576         count=1000
+Acc after re optimization
+Test: [0/250]   Time 2.502 (2.502)      Loss 1.2372 (1.2372)    Prec@1 83.000 (83.000)      Prec@5 99.000 (99.000)
+Test: [100/250] Time 0.408 (0.429)      Loss 1.9127 (1.6320)    Prec@1 66.500 (75.752)      Prec@5 87.000 (93.965)
+Test: [200/250] Time 0.408 (0.419)      Loss 1.0769 (1.7511)    Prec@1 85.500 (72.197)      Prec@5 96.000 (91.418)
+ * Prec@1 71.838 Prec@5 91.256 Time 104.212

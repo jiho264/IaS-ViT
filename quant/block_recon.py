@@ -82,7 +82,7 @@ def block_reconstruction(
     cached_grads = None
     device = "cuda"
     block.train()
-
+    cali_data = cali_data.to("cpu")
     for i in range(iters):
         idx = torch.randperm(cached_inps.size(0))[:batch_size]
         cur_inp = cached_inps[idx].to(device)
@@ -92,7 +92,10 @@ def block_reconstruction(
         optimizer.zero_grad()
         out_quant = block(cur_inp)
 
-        err = loss_func(out_quant, cur_out, cur_grad)
+        output = model(cali_data[idx].to(device))
+        output_fp = teacher_model(cali_data[idx].to(device))
+
+        err = loss_func(out_quant, cur_out, output, output_fp, cur_grad)
 
         err.backward(retain_graph=True)
 
@@ -131,8 +134,11 @@ class LossFunction:
             end_b=b_range[1],
         )
         self.count = 0
+        self.pd_loss = torch.nn.KLDivLoss(reduction="batchmean")
+        self.lam = 1.0
+        self.T = 7.0
 
-    def __call__(self, pred, tgt, grad=None):
+    def __call__(self, pred, tgt, output, output_fp, grad=None):
         """
         Compute the total loss for adaptive rounding:
         rec_loss is the quadratic output reconstruction loss, round_loss is
@@ -157,11 +163,20 @@ class LossFunction:
             raise ValueError(
                 "Not supported reconstruction loss function: {}".format(self.rec_loss)
             )
-
-        total_loss = rec_loss
-        if self.count % 500 == 0:
+        pd_loss = (
+            self.pd_loss(
+                F.log_softmax(output / self.T, dim=1),
+                F.softmax(output_fp / self.T, dim=1),
+            )
+            / self.lam
+        )
+        total_loss = rec_loss + pd_loss
+        if self.count % 500 == 0 or self.count == 1:
+            # print(
+            #     "Total loss:\t{:.3f} \tcount={}".format(float(total_loss), self.count)
+            # )
             print(
-                "Total loss:\t{:.3f} \tcount={}".format(float(total_loss), self.count)
+                f"{self.count} | Total loss: {total_loss:.4f}, rec_loss: {rec_loss:.4f}, pd_loss: {pd_loss:.4f}"
             )
         return total_loss
 

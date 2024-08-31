@@ -15,7 +15,7 @@ def get_args_parser():
     parser = argparse.ArgumentParser(description="I&S-ViT", add_help=False)
     parser.add_argument(
         "--model",
-        default="deit_small",
+        default="deit_tiny",
         choices=[
             "vit_tiny",
             "vit_small",
@@ -29,18 +29,16 @@ def get_args_parser():
         ],
         help="model",
     )
+    parser.add_argument("--dataset", default="data/ImageNet", help="path to dataset")
     parser.add_argument(
-        "--dataset", default="/dataset/imagenet/", help="path to dataset"
-    )
-    parser.add_argument(
-        "--calib-batchsize", default=1024, type=int, help="batchsize of validation set"
+        "--calib-batchsize", default=128, type=int, help="batchsize of validation set"
     )
     parser.add_argument(
         "--val-batchsize", default=200, type=int, help="batchsize of validation set"
     )
     parser.add_argument(
         "--num-workers",
-        default=16,
+        default=8,
         type=int,
         help="number of data loading workers (default: 16)",
     )
@@ -55,7 +53,7 @@ def get_args_parser():
         "--a_bits", default=4, type=int, help="bit-precision of activation"
     )
     parser.add_argument(
-        "--w_cw", action="store_true", help="weight channel-wise if assign"
+        "--w_cw", action="store_false", help="weight channel-wise if assign"
     )
     parser.add_argument(
         "--a_cw", action="store_true", help="act channel-wise if assign"
@@ -393,4 +391,6 @@ def accuracy(output, target, topk=(1,)):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("I&S-ViT", parents=[get_args_parser()])
     args = parser.parse_args()
+    starttime = time.time()
     main()
+    print("Time taken: ", time.time() - starttime)
