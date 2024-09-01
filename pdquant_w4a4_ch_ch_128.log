@@ -16,3 +16,122 @@ Reconstruction for block 0
 1000 | Total loss: 4.0216, rec_loss: 4.0159, pd_loss: 0.0057
 Reconstruction for block 1
 1 | Total loss: 1.8562, rec_loss: 1.8500, pd_loss: 0.0062
+500 | Total loss: 1.2355, rec_loss: 1.2295, pd_loss: 0.0060
+1000 | Total loss: 1.2192, rec_loss: 1.2136, pd_loss: 0.0055
+Reconstruction for block 2
+1 | Total loss: 1.4767, rec_loss: 1.4709, pd_loss: 0.0058
+500 | Total loss: 1.0135, rec_loss: 1.0081, pd_loss: 0.0055
+1000 | Total loss: 0.9959, rec_loss: 0.9908, pd_loss: 0.0052
+Reconstruction for block 3
+1 | Total loss: 1.2130, rec_loss: 1.2077, pd_loss: 0.0053
+500 | Total loss: 0.8490, rec_loss: 0.8439, pd_loss: 0.0051
+1000 | Total loss: 0.8201, rec_loss: 0.8154, pd_loss: 0.0047
+Reconstruction for block 4
+1 | Total loss: 1.1111, rec_loss: 1.1063, pd_loss: 0.0048
+500 | Total loss: 0.7854, rec_loss: 0.7805, pd_loss: 0.0050
+1000 | Total loss: 0.7651, rec_loss: 0.7603, pd_loss: 0.0048
+Reconstruction for block 5
+1 | Total loss: 1.3607, rec_loss: 1.3558, pd_loss: 0.0049
+500 | Total loss: 0.8817, rec_loss: 0.8771, pd_loss: 0.0046
+1000 | Total loss: 0.8656, rec_loss: 0.8611, pd_loss: 0.0045
+Reconstruction for block 6
+1 | Total loss: 1.8371, rec_loss: 1.8323, pd_loss: 0.0048
+500 | Total loss: 1.2303, rec_loss: 1.2258, pd_loss: 0.0046
+1000 | Total loss: 1.1975, rec_loss: 1.1932, pd_loss: 0.0043
+Reconstruction for block 7
+1 | Total loss: 2.1304, rec_loss: 2.1260, pd_loss: 0.0044
+500 | Total loss: 1.3692, rec_loss: 1.3649, pd_loss: 0.0043
+1000 | Total loss: 1.3510, rec_loss: 1.3468, pd_loss: 0.0043
+Reconstruction for block 8
+1 | Total loss: 3.0657, rec_loss: 3.0619, pd_loss: 0.0038
+500 | Total loss: 1.8436, rec_loss: 1.8397, pd_loss: 0.0039
+1000 | Total loss: 1.7605, rec_loss: 1.7565, pd_loss: 0.0040
+Reconstruction for block 9
+1 | Total loss: 2.4033, rec_loss: 2.3992, pd_loss: 0.0041
+500 | Total loss: 1.6728, rec_loss: 1.6685, pd_loss: 0.0043
+1000 | Total loss: 1.6317, rec_loss: 1.6276, pd_loss: 0.0042
+Reconstruction for block 10
+1 | Total loss: 1.2470, rec_loss: 1.2428, pd_loss: 0.0042
+500 | Total loss: 0.8192, rec_loss: 0.8154, pd_loss: 0.0039
+1000 | Total loss: 0.7971, rec_loss: 0.7931, pd_loss: 0.0040
+Reconstruction for block 11
+1 | Total loss: 1.0474, rec_loss: 1.0431, pd_loss: 0.0043
+500 | Total loss: 0.6049, rec_loss: 0.6014, pd_loss: 0.0035
+1000 | Total loss: 0.5836, rec_loss: 0.5800, pd_loss: 0.0036
+Reconstruction for layer head
+1 | Total loss: 17.4939, rec_loss: 17.4904, pd_loss: 0.0035
+500 | Total loss: 2.4910, rec_loss: 2.4873, pd_loss: 0.0036
+1000 | Total loss: 1.8456, rec_loss: 1.8421, pd_loss: 0.0036
+Acc after Stage One: 
+Test: [0/250]	Time 2.343 (2.343)	Loss 1.0209 (1.0209)	Prec@1 77.500 (77.500)	Prec@5 96.000 (96.000)
+Test: [100/250]	Time 0.201 (0.236)	Loss 2.0955 (1.3008)	Prec@1 52.500 (71.931)	Prec@5 83.000 (92.079)
+Test: [200/250]	Time 0.204 (0.223)	Loss 0.9734 (1.6336)	Prec@1 83.500 (65.786)	Prec@5 94.000 (87.552)
+ * Prec@1 65.316 Prec@5 87.166 Time 54.742
+
+Stage Two, reparameterization
+Stage Three, Q-Act, Q-W
+Init quantization parameters of weight
+re optimization
+Reconstruction for layer proj
+1 | Total loss: 3.9406, rec_loss: 3.9343, pd_loss: 0.0064
+500 | Total loss: 1.7052, rec_loss: 1.6995, pd_loss: 0.0057
+1000 | Total loss: 0.3362, rec_loss: 0.3300, pd_loss: 0.0062
+Reconstruction for block 0
+1 | Total loss: 7.5754, rec_loss: 7.5696, pd_loss: 0.0058
+500 | Total loss: 5.7793, rec_loss: 5.7736, pd_loss: 0.0057
+1000 | Total loss: 4.8088, rec_loss: 4.8034, pd_loss: 0.0054
+Reconstruction for block 1
+1 | Total loss: 6.1157, rec_loss: 6.1105, pd_loss: 0.0053
+500 | Total loss: 4.7316, rec_loss: 4.7266, pd_loss: 0.0051
+1000 | Total loss: 4.4304, rec_loss: 4.4253, pd_loss: 0.0051
+Reconstruction for block 2
+1 | Total loss: 6.1009, rec_loss: 6.0957, pd_loss: 0.0052
+500 | Total loss: 5.2151, rec_loss: 5.2100, pd_loss: 0.0052
+1000 | Total loss: 4.8721, rec_loss: 4.8673, pd_loss: 0.0048
+Reconstruction for block 3
+1 | Total loss: 6.9537, rec_loss: 6.9488, pd_loss: 0.0049
+500 | Total loss: 6.0323, rec_loss: 6.0278, pd_loss: 0.0045
+1000 | Total loss: 5.7780, rec_loss: 5.7732, pd_loss: 0.0048
+Reconstruction for block 4
+1 | Total loss: 8.0093, rec_loss: 8.0048, pd_loss: 0.0045
+500 | Total loss: 6.8811, rec_loss: 6.8765, pd_loss: 0.0046
+1000 | Total loss: 6.8142, rec_loss: 6.8097, pd_loss: 0.0045
+Reconstruction for block 5
+1 | Total loss: 9.9214, rec_loss: 9.9173, pd_loss: 0.0041
+500 | Total loss: 8.8017, rec_loss: 8.7974, pd_loss: 0.0043
+1000 | Total loss: 8.4061, rec_loss: 8.4020, pd_loss: 0.0042
+Reconstruction for block 6
+1 | Total loss: 13.0255, rec_loss: 13.0212, pd_loss: 0.0042
+500 | Total loss: 11.1494, rec_loss: 11.1454, pd_loss: 0.0040
+1000 | Total loss: 10.8695, rec_loss: 10.8658, pd_loss: 0.0038
+Reconstruction for block 7
+1 | Total loss: 17.4687, rec_loss: 17.4649, pd_loss: 0.0038
+500 | Total loss: 15.7810, rec_loss: 15.7774, pd_loss: 0.0035
+1000 | Total loss: 15.3141, rec_loss: 15.3105, pd_loss: 0.0036
+Reconstruction for block 8
+1 | Total loss: 26.0898, rec_loss: 26.0862, pd_loss: 0.0036
+500 | Total loss: 23.4792, rec_loss: 23.4756, pd_loss: 0.0036
+1000 | Total loss: 23.3511, rec_loss: 23.3473, pd_loss: 0.0037
+Reconstruction for block 9
+1 | Total loss: 36.2440, rec_loss: 36.2405, pd_loss: 0.0035
+500 | Total loss: 31.9117, rec_loss: 31.9084, pd_loss: 0.0033
+1000 | Total loss: 32.5969, rec_loss: 32.5935, pd_loss: 0.0034
+Reconstruction for block 10
+1 | Total loss: 38.1857, rec_loss: 38.1821, pd_loss: 0.0036
+500 | Total loss: 36.7437, rec_loss: 36.7402, pd_loss: 0.0035
+1000 | Total loss: 36.7336, rec_loss: 36.7301, pd_loss: 0.0035
+Reconstruction for block 11
+1 | Total loss: 40.4449, rec_loss: 40.4412, pd_loss: 0.0037
+500 | Total loss: 37.7168, rec_loss: 37.7137, pd_loss: 0.0031
+1000 | Total loss: 36.7495, rec_loss: 36.7464, pd_loss: 0.0031
+Reconstruction for layer head
+1 | Total loss: 295.0434, rec_loss: 295.0403, pd_loss: 0.0031
+500 | Total loss: 118.5626, rec_loss: 118.5613, pd_loss: 0.0012
+1000 | Total loss: 102.6881, rec_loss: 102.6870, pd_loss: 0.0011
+Acc after re optimization
+Test: [0/250]	Time 2.308 (2.308)	Loss 1.1703 (1.1703)	Prec@1 75.000 (75.000)	Prec@5 95.000 (95.000)
+Test: [100/250]	Time 0.209 (0.238)	Loss 2.1927 (1.4693)	Prec@1 47.000 (69.639)	Prec@5 83.000 (91.292)
+Test: [200/250]	Time 0.207 (0.225)	Loss 1.0316 (1.7891)	Prec@1 82.000 (63.607)	Prec@5 95.000 (86.433)
+ * Prec@1 62.904 Prec@5 85.902 Time 55.495
+
+Time taken:  7167.060605287552
