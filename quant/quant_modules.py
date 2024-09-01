@@ -86,7 +86,11 @@ class QuantLinear(nn.Linear):
 
         input_quant_params_linear = deepcopy(input_quant_params)
         input_quant_params_linear["is_act"] = True
-        self.input_quantizer = UniformQuantizer(**input_quant_params_linear)
+        if "log_quant" in input_quant_params_linear:
+            input_quant_params_linear.pop("log_quant")
+            self.input_quantizer = LogSqrt2Quantizer(**input_quant_params_linear)
+        else:
+            self.input_quantizer = UniformQuantizer(**input_quant_params_linear)
 
         self.weight_quantizer = UniformQuantizer(**weight_quant_params)
 

@@ -267,9 +267,13 @@ class LogSqrt2Quantizer(nn.Module):
         Best base: 2.00000, Best bias: 0.00100, Best score: 0.00001
         Best base: 2.00000, Best bias: 0.00100, Best score: 0.00002
         """
-        import math
 
         x_clone = x.clone().detach()
+        post_gelu_flag = False
+        if x_clone.min() < 0:
+            post_gelu_flag = True
+            print("post-GELU")
+
         cur_bias = -10
         # self.base = torch.sqrt(torch.tensor(2.0)).to(x.device)
 
@@ -308,6 +312,8 @@ class LogSqrt2Quantizer(nn.Module):
                 1.0,
             ]:
                 self.base = b
+                if post_gelu_flag:
+                    bias += 0.17
                 x_q, maxv, minv = self.quantize(x_clone, bias)
                 score = lp_loss(x_clone, x_q, p=2, reduction="all")
                 if score < best_score:

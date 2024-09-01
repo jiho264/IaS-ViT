@@ -1,0 +1,759 @@
+(py312) lee@AI-LAP:~/Desktop/IaS-ViT$ cd "/home/lee/Desktop/IaS-ViT/" && python3 -u test_quant.py | tee arch.log
+Namespace(model='deit_tiny', dataset='data/ImageNet', calib_batchsize=1024, val_batchsize=200, num_workers=8, device='cuda', print_freq=100, seed=0, w_bits=4, a_bits=4, w_cw=True, a_cw=True, iter=1000, warmup=0.2)
+Building dataloader ...
+Building model ...
+quantization settings: {'n_bits': 4, 'channel_wise': True} | {'n_bits': 4, 'channel_wise': True}
+
+ VisionTransformer(
+  (patch_embed): PatchEmbed(
+    (proj): Conv2d(3, 192, kernel_size=(16, 16), stride=(16, 16))
+    (norm): Identity()
+  )
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (blocks): Sequential(
+    (0): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (1): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (2): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (3): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (4): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (5): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (6): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (7): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (8): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (9): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (10): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (11): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=192, out_features=576, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=192, out_features=192, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): MatMul()
+        (matmul2): MatMul()
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=192, out_features=768, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=768, out_features=192, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (norm): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+  (pre_logits): Identity()
+  (head): Linear(in_features=192, out_features=1000, bias=True)
+)
+
+
+ VisionTransformer(
+  (patch_embed): PatchEmbed(
+    (proj): (QuantConv2d(
+      3, 192, kernel_size=(16, 16), stride=(16, 16)
+      (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+    )input_quant=False, weight_quant=False)
+    (norm): Identity()
+  )
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (blocks): Sequential(
+    (0): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (1): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (2): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (3): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (4): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (5): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (6): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (7): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (8): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (9): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (10): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (11): Block(
+      (norm1): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): (QuantLinear(
+          in_features=192, out_features=576, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): (QuantLinear(
+          in_features=192, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+        (matmul1): (QuantMatMul(
+          (quantizer_A): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+        (matmul2): (QuantMatMul(
+          (quantizer_A): LogSqrt2Quantizer()
+          (quantizer_B): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): (QuantLinear(
+          in_features=192, out_features=768, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (act): GELU(approximate='none')
+        (fc2): (QuantLinear(
+          in_features=768, out_features=192, bias=True
+          (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+          (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+        )input_quant=False, weight_quant=False)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (norm): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+  (pre_logits): Identity()
+  (head): (QuantLinear(
+    in_features=192, out_features=1000, bias=True
+    (input_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+    (weight_quantizer): (UniformQuantizer() inited=tensor([0.], device='cuda:0'), channel_wise=True, bit = 4)
+  )input_quant=False, weight_quant=False)
+)

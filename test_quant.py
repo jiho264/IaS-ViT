@@ -15,7 +15,7 @@ def get_args_parser():
     parser = argparse.ArgumentParser(description="I&S-ViT", add_help=False)
     parser.add_argument(
         "--model",
-        default="deit_small",
+        default="deit_tiny",
         choices=[
             "vit_tiny",
             "vit_small",
@@ -120,14 +120,23 @@ def main():
     aq_params = {"n_bits": args.a_bits, "channel_wise": args.a_cw}
     print("quantization settings:", wq_params, "|", aq_params)
     print()
-
+    # for name, module in model.named_modules():
+    #     print(name, module)
+    #     break
+    # print()
+    # print()
     # Wrap quantized model
     q_model = quant_model(
         model, input_quant_params=aq_params, weight_quant_params=wq_params
     )
     q_model.to(device)
     q_model.eval()
-
+    # for name, module in model.named_modules():
+    #     print(name, module)
+    #     break
+    # print()
+    # print()
+    # exit()
     criterion = nn.CrossEntropyLoss().to(device)
 
     # Initial quantizations
