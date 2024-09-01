@@ -15,7 +15,7 @@ def get_args_parser():
     parser = argparse.ArgumentParser(description="I&S-ViT", add_help=False)
     parser.add_argument(
         "--model",
-        default="deit_tiny",
+        default="deit_small",
         choices=[
             "vit_tiny",
             "vit_small",
