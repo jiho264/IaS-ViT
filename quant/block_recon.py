@@ -46,6 +46,8 @@ def block_reconstruction(
     optimizer = torch.optim.Adam(
         filter(lambda p: p.requires_grad, block.parameters()), lr=lr
     )
+    # for dja in optimizer.param_groups[0]["params"]:
+    #     print(dja.shape)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer, T_max=iters, eta_min=0.0
     )
@@ -159,7 +161,7 @@ class LossFunction:
             )
 
         total_loss = rec_loss
-        if self.count % 500 == 0:
+        if self.count % 500 == 0 or self.count == 1:
             print(
                 "Total loss:\t{:.3f} \tcount={}".format(float(total_loss), self.count)
             )

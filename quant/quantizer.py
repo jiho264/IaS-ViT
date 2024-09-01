@@ -297,6 +297,9 @@ class LogSqrt2Quantizer(nn.Module):
             # torch.tensor(1.3).to(x.device),
             # torch.tensor(1.25).to(x.device),
             # torch.tensor(1.2).to(x.device),
+            # torch.tensor(1.15).to(x.device),
+            # torch.tensor(1.1).to(x.device),
+            # torch.tensor(1.05).to(x.device),
         ]:
             for bias in [
                 0.001,

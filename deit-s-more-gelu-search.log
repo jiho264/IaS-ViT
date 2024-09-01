@@ -1,0 +1,372 @@
+Namespace(model='deit_small', dataset='data/ImageNet', calib_batchsize=1024, val_batchsize=200, num_workers=8, device='cuda', print_freq=100, seed=0, w_bits=4, a_bits=4, w_cw=True, a_cw=True, iter=1000, warmup=0.2)
+Building dataloader ...
+Building model ...
+quantization settings: {'n_bits': 4, 'channel_wise': True} | {'n_bits': 4, 'channel_wise': True}
+
+Stage One, Q-Act, FP-W
+Init quantization parameters of act
+Best base: 1.05000, Best bias: 0.02000, Best score: 0.00001
+post-GELU
+Best base: 1.05000, Best bias: 0.37000, Best score: 0.00228
+Best base: 1.05000, Best bias: 0.02000, Best score: 0.00001
+post-GELU
+Best base: 1.05000, Best bias: 0.27000, Best score: 0.00065
+Best base: 1.05000, Best bias: 0.02000, Best score: 0.00001
+post-GELU
+Best base: 1.05000, Best bias: 0.27000, Best score: 0.00054
+Best base: 1.05000, Best bias: 0.01000, Best score: 0.00000
+post-GELU
+Best base: 1.10000, Best bias: 0.27000, Best score: 0.00053
+Best base: 1.05000, Best bias: 0.01000, Best score: 0.00000
+post-GELU
+Best base: 1.05000, Best bias: 0.27000, Best score: 0.00063
+Best base: 1.05000, Best bias: 0.01000, Best score: 0.00001
+post-GELU
+Best base: 1.05000, Best bias: 0.27000, Best score: 0.00078
+Best base: 1.05000, Best bias: 0.01000, Best score: 0.00000
+post-GELU
+Best base: 1.05000, Best bias: 0.27000, Best score: 0.00084
+Best base: 1.05000, Best bias: 0.01000, Best score: 0.00000
+post-GELU
+Best base: 1.05000, Best bias: 0.37000, Best score: 0.00114
+Best base: 1.05000, Best bias: 0.00500, Best score: 0.00000
+post-GELU
+Best base: 1.05000, Best bias: 0.37000, Best score: 0.00177
+Best base: 1.05000, Best bias: 0.00500, Best score: 0.00000
+post-GELU
+Best base: 1.05000, Best bias: 0.37000, Best score: 0.00144
+Best base: 1.05000, Best bias: 0.00500, Best score: 0.00000
+post-GELU
+Best base: 1.05000, Best bias: 0.27000, Best score: 0.00050
+Best base: 1.05000, Best bias: 0.01000, Best score: 0.00000
+post-GELU
+Best base: 1.05000, Best bias: 0.21000, Best score: 0.00030
+Start optimization
+Reconstruction for layer proj
+torch.Size([384, 3, 16, 16])
+torch.Size([384])
+Total loss:	0.000 	count=1
+Total loss:	0.000 	count=500
+Total loss:	0.000 	count=1000
+Reconstruction for block 0
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	6.579 	count=1
+Total loss:	4.209 	count=500
+Total loss:	4.106 	count=1000
+Reconstruction for block 1
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	2.215 	count=1
+Total loss:	1.644 	count=500
+Total loss:	1.587 	count=1000
+Reconstruction for block 2
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	1.831 	count=1
+Total loss:	1.513 	count=500
+Total loss:	1.491 	count=1000
+Reconstruction for block 3
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	1.732 	count=1
+Total loss:	1.350 	count=500
+Total loss:	1.319 	count=1000
+Reconstruction for block 4
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	2.038 	count=1
+Total loss:	1.620 	count=500
+Total loss:	1.591 	count=1000
+Reconstruction for block 5
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	2.693 	count=1
+Total loss:	2.154 	count=500
+Total loss:	2.152 	count=1000
+Reconstruction for block 6
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	4.096 	count=1
+Total loss:	2.870 	count=500
+Total loss:	2.817 	count=1000
+Reconstruction for block 7
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	9.634 	count=1
+Total loss:	3.136 	count=500
+Total loss:	3.145 	count=1000
+Reconstruction for block 8
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	9.373 	count=1
+Total loss:	3.798 	count=500
+Total loss:	3.647 	count=1000
+Reconstruction for block 9
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	5.346 	count=1
+Total loss:	3.059 	count=500
+Total loss:	2.988 	count=1000
+Reconstruction for block 10
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	24.091 	count=1
+Total loss:	2.964 	count=500
+Total loss:	2.840 	count=1000
+Reconstruction for block 11
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	10.246 	count=1
+Total loss:	3.054 	count=500
+Total loss:	2.913 	count=1000
+Reconstruction for layer head
+torch.Size([1000, 384])
+torch.Size([1000])
+Total loss:	67.752 	count=1
+Total loss:	42.586 	count=500
+Total loss:	34.680 	count=1000
+Acc after Stage One: 
+Test: [0/250]	Time 2.552 (2.552)	Loss 0.7684 (0.7684)	Prec@1 89.500 (89.500)	Prec@5 99.000 (99.000)
+Test: [100/250]	Time 0.463 (0.486)	Loss 1.3931 (0.9844)	Prec@1 69.000 (82.406)	Prec@5 91.500 (96.114)
+Test: [200/250]	Time 0.462 (0.475)	Loss 0.7090 (1.1700)	Prec@1 94.500 (78.259)	Prec@5 96.500 (94.042)
+ * Prec@1 77.646 Prec@5 93.874 Time 118.078
+
+Stage Two, reparameterization
+Stage Three, Q-Act, Q-W
+Init quantization parameters of weight
+re optimization
+Reconstruction for layer proj
+torch.Size([384, 3, 16, 16])
+torch.Size([384])
+Total loss:	6.211 	count=1
+Total loss:	3.232 	count=500
+Total loss:	0.507 	count=1000
+Reconstruction for block 0
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	12.316 	count=1
+Total loss:	7.849 	count=500
+Total loss:	5.352 	count=1000
+Reconstruction for block 1
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	9.679 	count=1
+Total loss:	7.095 	count=500
+Total loss:	6.541 	count=1000
+Reconstruction for block 2
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	12.149 	count=1
+Total loss:	10.431 	count=500
+Total loss:	9.637 	count=1000
+Reconstruction for block 3
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	16.363 	count=1
+Total loss:	14.239 	count=500
+Total loss:	14.603 	count=1000
+Reconstruction for block 4
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	28.573 	count=1
+Total loss:	24.752 	count=500
+Total loss:	24.249 	count=1000
+Reconstruction for block 5
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	50.437 	count=1
+Total loss:	44.816 	count=500
+Total loss:	45.861 	count=1000
+Reconstruction for block 6
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	71.488 	count=1
+Total loss:	72.372 	count=500
+Total loss:	69.803 	count=1000
+Reconstruction for block 7
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	100.650 	count=1
+Total loss:	96.137 	count=500
+Total loss:	93.636 	count=1000
+Reconstruction for block 8
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	128.925 	count=1
+Total loss:	124.287 	count=500
+Total loss:	124.606 	count=1000
+Reconstruction for block 9
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	157.226 	count=1
+Total loss:	146.687 	count=500
+Total loss:	153.304 	count=1000
+Reconstruction for block 10
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	161.670 	count=1
+Total loss:	156.374 	count=500
+Total loss:	153.921 	count=1000
+Reconstruction for block 11
+torch.Size([1152, 384])
+torch.Size([1152])
+torch.Size([384, 384])
+torch.Size([384])
+torch.Size([1536, 384])
+torch.Size([1536])
+torch.Size([384, 1536])
+torch.Size([384])
+Total loss:	160.479 	count=1
+Total loss:	152.711 	count=500
+Total loss:	152.016 	count=1000
+Reconstruction for layer head
+torch.Size([1000, 384])
+torch.Size([1000])
+Total loss:	209.894 	count=1
+Total loss:	142.024 	count=500
+Total loss:	138.495 	count=1000
+Acc after re optimization
+Test: [0/250]	Time 4.498 (4.498)	Loss 0.8800 (0.8800)	Prec@1 85.000 (85.000)	Prec@5 99.000 (99.000)
+Test: [100/250]	Time 0.645 (0.624)	Loss 1.5961 (1.0981)	Prec@1 65.500 (81.248)	Prec@5 90.500 (95.985)
+Test: [200/250]	Time 0.469 (0.600)	Loss 0.8173 (1.2862)	Prec@1 91.000 (77.231)	Prec@5 97.500 (93.684)
+ * Prec@1 76.638 Prec@5 93.472 Time 143.586
+

@@ -31,7 +31,7 @@ def get_args_parser():
     )
     parser.add_argument("--dataset", default="data/ImageNet", help="path to dataset")
     parser.add_argument(
-        "--calib-batchsize", default=1024, type=int, help="batchsize of validation set"
+        "--calib-batchsize", default=128, type=int, help="batchsize of validation set"
     )
     parser.add_argument(
         "--val-batchsize", default=200, type=int, help="batchsize of validation set"
@@ -59,7 +59,7 @@ def get_args_parser():
         "--a_cw", action="store_false", help="act channel-wise if assign"
     )
     parser.add_argument(
-        "--iter", default=1000, type=int, help="number of iteration for optimization"
+        "--iter", default=10, type=int, help="number of iteration for optimization"
     )
     parser.add_argument(
         "--warmup",
