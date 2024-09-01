@@ -253,18 +253,74 @@ class LogSqrt2Quantizer(nn.Module):
         return x_dequant
 
     def init_quantization_scale(self, x: torch.Tensor):
+        """
+        Best base: 2.00000, Best bias: 0.00100, Best score: 0.00003
+        Best base: 2.00000, Best bias: 0.00100, Best score: 0.00006
+        Best base: 2.00000, Best bias: 0.00100, Best score: 0.00007
+        Best base: 2.00000, Best bias: 0.00500, Best score: 0.00002
+        Best base: 2.00000, Best bias: 0.00500, Best score: 0.00001
+        Best base: 2.00000, Best bias: 0.00500, Best score: 0.00003
+        Best base: 2.00000, Best bias: 0.00100, Best score: 0.00002
+        Best base: 2.00000, Best bias: 0.00500, Best score: 0.00003
+        Best base: 2.00000, Best bias: 0.00500, Best score: 0.00002
+        Best base: 2.00000, Best bias: 0.00500, Best score: 0.00002
+        Best base: 2.00000, Best bias: 0.00100, Best score: 0.00001
+        Best base: 2.00000, Best bias: 0.00100, Best score: 0.00002
+        """
+        import math
+
         x_clone = x.clone().detach()
         cur_bias = -10
-        self.base = 2
+        # self.base = torch.sqrt(torch.tensor(2.0)).to(x.device)
+
         best_score = 1e10
-        for bias in [0.001, 0.005, 0.01, 0.02, 0.03, 0.04, 0.05, 0.1, 0.2, 0.5, 1.0]:
-            x_q, maxv, minv = self.quantize(x_clone, bias)
-            score = lp_loss(x_clone, x_q, p=2, reduction="all")
-            if score < best_score:
-                best_score = score
-                cur_bias = bias
-                self.maxv = maxv
-                self.minv = minv
+        best_base = None
+        for b in [
+            torch.tensor(2.0).to(x.device),
+            torch.tensor(1.95).to(x.device),
+            torch.tensor(1.9).to(x.device),
+            torch.tensor(1.85).to(x.device),
+            torch.tensor(1.8).to(x.device),
+            torch.tensor(1.75).to(x.device),
+            torch.tensor(1.7).to(x.device),
+            torch.tensor(1.65).to(x.device),
+            torch.tensor(1.6).to(x.device),
+            torch.tensor(1.55).to(x.device),
+            torch.tensor(1.5).to(x.device),
+            torch.tensor(1.45).to(x.device),
+            torch.tensor(1.4).to(x.device),
+            torch.tensor(1.35).to(x.device),
+            torch.tensor(1.3).to(x.device),
+            torch.tensor(1.25).to(x.device),
+            torch.tensor(1.2).to(x.device),
+        ]:
+            for bias in [
+                0.001,
+                0.005,
+                0.01,
+                0.02,
+                0.03,
+                0.04,
+                0.05,
+                0.1,
+                0.2,
+                0.5,
+                1.0,
+            ]:
+                self.base = b
+                x_q, maxv, minv = self.quantize(x_clone, bias)
+                score = lp_loss(x_clone, x_q, p=2, reduction="all")
+                if score < best_score:
+                    best_score = score
+                    cur_bias = bias
+                    self.maxv = maxv
+                    self.minv = minv
+                    best_base = self.base
+
+        self.base = best_base
+        print(
+            f"Best base: {best_base:.5f}, Best bias: {cur_bias:.5f}, Best score: {best_score:.5f}"
+        )
         return torch.tensor(cur_bias)
 
     def logk(self, x, k):
