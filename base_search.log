@@ -1,4 +1,4 @@
-Namespace(model='deit_tiny', dataset='data/ImageNet', calib_batchsize=128, val_batchsize=200, num_workers=8, device='cuda', print_freq=100, seed=0, w_bits=4, a_bits=4, w_cw=True, a_cw=True, iter=1000, warmup=0.2)
+Namespace(model='deit_tiny', dataset='data/ImageNet', calib_batchsize=1024, val_batchsize=200, num_workers=8, device='cuda', print_freq=100, seed=0, w_bits=4, a_bits=4, w_cw=True, a_cw=True, iter=1000, warmup=0.2)
 Building dataloader ...
 Building model ...
 quantization settings: {'n_bits': 4, 'channel_wise': True} | {'n_bits': 4, 'channel_wise': True}
@@ -8,113 +8,113 @@ Init quantization parameters of act
 Best base: 1.30000, Best bias: 0.02000, Best score: 0.00001
 Best base: 1.30000, Best bias: 0.02000, Best score: 0.00001
 Best base: 1.30000, Best bias: 0.02000, Best score: 0.00001
-Best base: 1.30000, Best bias: 0.00500, Best score: 0.00001
-Best base: 1.30000, Best bias: 0.00500, Best score: 0.00000
+Best base: 1.20000, Best bias: 0.01000, Best score: 0.00001
+Best base: 1.20000, Best bias: 0.00500, Best score: 0.00000
+Best base: 1.20000, Best bias: 0.01000, Best score: 0.00001
+Best base: 1.20000, Best bias: 0.00500, Best score: 0.00001
 Best base: 1.30000, Best bias: 0.02000, Best score: 0.00001
-Best base: 1.30000, Best bias: 0.02000, Best score: 0.00001
-Best base: 1.30000, Best bias: 0.02000, Best score: 0.00001
-Best base: 1.30000, Best bias: 0.02000, Best score: 0.00001
-Best base: 1.30000, Best bias: 0.00500, Best score: 0.00001
-Best base: 1.30000, Best bias: 0.00500, Best score: 0.00001
+Best base: 1.20000, Best bias: 0.01000, Best score: 0.00001
+Best base: 1.20000, Best bias: 0.01000, Best score: 0.00001
+Best base: 1.20000, Best bias: 0.01000, Best score: 0.00000
 Best base: 1.40000, Best bias: 0.00500, Best score: 0.00000
 Start optimization
 Reconstruction for layer proj
 Total loss:	0.000 	count=500
 Total loss:	0.000 	count=1000
 Reconstruction for block 0
-Total loss:	3.707 	count=500
-Total loss:	3.688 	count=1000
+Total loss:	4.085 	count=500
+Total loss:	3.852 	count=1000
 Reconstruction for block 1
-Total loss:	1.099 	count=500
-Total loss:	1.083 	count=1000
+Total loss:	1.210 	count=500
+Total loss:	1.265 	count=1000
 Reconstruction for block 2
-Total loss:	0.899 	count=500
-Total loss:	0.877 	count=1000
+Total loss:	0.971 	count=500
+Total loss:	0.954 	count=1000
 Reconstruction for block 3
-Total loss:	0.725 	count=500
-Total loss:	0.705 	count=1000
+Total loss:	0.773 	count=500
+Total loss:	0.762 	count=1000
 Reconstruction for block 4
-Total loss:	0.680 	count=500
-Total loss:	0.663 	count=1000
+Total loss:	0.749 	count=500
+Total loss:	0.744 	count=1000
 Reconstruction for block 5
-Total loss:	0.836 	count=500
-Total loss:	0.821 	count=1000
+Total loss:	0.899 	count=500
+Total loss:	0.887 	count=1000
 Reconstruction for block 6
-Total loss:	1.160 	count=500
-Total loss:	1.135 	count=1000
+Total loss:	1.310 	count=500
+Total loss:	1.292 	count=1000
 Reconstruction for block 7
-Total loss:	1.307 	count=500
-Total loss:	1.282 	count=1000
+Total loss:	1.642 	count=500
+Total loss:	1.526 	count=1000
 Reconstruction for block 8
-Total loss:	1.781 	count=500
-Total loss:	1.709 	count=1000
+Total loss:	2.192 	count=500
+Total loss:	2.012 	count=1000
 Reconstruction for block 9
-Total loss:	1.543 	count=500
-Total loss:	1.499 	count=1000
+Total loss:	1.987 	count=500
+Total loss:	1.943 	count=1000
 Reconstruction for block 10
-Total loss:	0.765 	count=500
-Total loss:	0.740 	count=1000
+Total loss:	0.952 	count=500
+Total loss:	0.941 	count=1000
 Reconstruction for block 11
-Total loss:	0.530 	count=500
-Total loss:	0.517 	count=1000
+Total loss:	0.708 	count=500
+Total loss:	0.730 	count=1000
 Reconstruction for layer head
-Total loss:	2.267 	count=500
-Total loss:	1.656 	count=1000
+Total loss:	18.255 	count=500
+Total loss:	21.341 	count=1000
 Acc after Stage One: 
-Test: [0/250]	Time 2.474 (2.474)	Loss 1.0589 (1.0589)	Prec@1 77.500 (77.500)	Prec@5 96.500 (96.500)
-Test: [100/250]	Time 0.200 (0.234)	Loss 2.0643 (1.2433)	Prec@1 50.000 (72.045)	Prec@5 82.000 (92.084)
-Test: [200/250]	Time 0.199 (0.220)	Loss 0.8921 (1.5680)	Prec@1 84.000 (66.169)	Prec@5 94.500 (87.794)
- * Prec@1 65.584 Prec@5 87.414 Time 54.073
+Test: [0/250]	Time 2.821 (2.821)	Loss 0.9583 (0.9583)	Prec@1 78.000 (78.000)	Prec@5 97.500 (97.500)
+Test: [100/250]	Time 0.327 (0.353)	Loss 2.0794 (1.2139)	Prec@1 48.500 (72.614)	Prec@5 79.500 (92.450)
+Test: [200/250]	Time 0.324 (0.339)	Loss 0.8804 (1.5309)	Prec@1 85.000 (66.562)	Prec@5 94.000 (88.172)
+ * Prec@1 66.034 Prec@5 87.798 Time 84.091
 
 Stage Two, reparameterization
 Stage Three, Q-Act, Q-W
 Init quantization parameters of weight
 re optimization
 Reconstruction for layer proj
-Total loss:	1.770 	count=500
-Total loss:	0.331 	count=1000
+Total loss:	1.929 	count=500
+Total loss:	0.389 	count=1000
 Reconstruction for block 0
-Total loss:	5.681 	count=500
-Total loss:	4.520 	count=1000
+Total loss:	5.365 	count=500
+Total loss:	4.620 	count=1000
 Reconstruction for block 1
-Total loss:	4.507 	count=500
-Total loss:	4.214 	count=1000
+Total loss:	4.630 	count=500
+Total loss:	4.778 	count=1000
 Reconstruction for block 2
-Total loss:	4.960 	count=500
-Total loss:	4.592 	count=1000
+Total loss:	5.383 	count=500
+Total loss:	5.186 	count=1000
 Reconstruction for block 3
-Total loss:	5.716 	count=500
-Total loss:	5.439 	count=1000
+Total loss:	6.386 	count=500
+Total loss:	6.290 	count=1000
 Reconstruction for block 4
-Total loss:	6.514 	count=500
-Total loss:	6.434 	count=1000
+Total loss:	8.058 	count=500
+Total loss:	7.638 	count=1000
 Reconstruction for block 5
-Total loss:	8.358 	count=500
-Total loss:	7.966 	count=1000
+Total loss:	10.373 	count=500
+Total loss:	10.086 	count=1000
 Reconstruction for block 6
-Total loss:	10.619 	count=500
-Total loss:	10.232 	count=1000
+Total loss:	14.459 	count=500
+Total loss:	14.517 	count=1000
 Reconstruction for block 7
-Total loss:	15.052 	count=500
-Total loss:	14.661 	count=1000
+Total loss:	21.217 	count=500
+Total loss:	20.741 	count=1000
 Reconstruction for block 8
-Total loss:	22.216 	count=500
-Total loss:	21.851 	count=1000
+Total loss:	35.665 	count=500
+Total loss:	34.186 	count=1000
 Reconstruction for block 9
-Total loss:	29.691 	count=500
-Total loss:	31.028 	count=1000
+Total loss:	51.406 	count=500
+Total loss:	51.254 	count=1000
 Reconstruction for block 10
-Total loss:	34.759 	count=500
-Total loss:	34.237 	count=1000
+Total loss:	59.840 	count=500
+Total loss:	57.673 	count=1000
 Reconstruction for block 11
-Total loss:	35.124 	count=500
-Total loss:	34.931 	count=1000
+Total loss:	59.575 	count=500
+Total loss:	59.641 	count=1000
 Reconstruction for layer head
-Total loss:	120.574 	count=500
-Total loss:	102.253 	count=1000
+Total loss:	319.545 	count=500
+Total loss:	285.975 	count=1000
 Acc after re optimization
-Test: [0/250]	Time 2.182 (2.182)	Loss 1.1576 (1.1576)	Prec@1 71.000 (71.000)	Prec@5 95.000 (95.000)
-Test: [100/250]	Time 0.207 (0.237)	Loss 2.3141 (1.4432)	Prec@1 51.500 (70.257)	Prec@5 77.000 (90.990)
-Test: [200/250]	Time 0.207 (0.224)	Loss 1.0233 (1.7586)	Prec@1 84.500 (64.234)	Prec@5 96.000 (86.410)
- * Prec@1 63.568 Prec@5 85.970 Time 55.182
+Test: [0/250]	Time 3.005 (3.005)	Loss 1.0865 (1.0865)	Prec@1 76.500 (76.500)	Prec@5 95.000 (95.000)
+Test: [100/250]	Time 0.341 (0.365)	Loss 2.1344 (1.3570)	Prec@1 52.000 (72.040)	Prec@5 84.000 (91.980)
+Test: [200/250]	Time 0.335 (0.351)	Loss 0.9945 (1.6621)	Prec@1 83.000 (66.204)	Prec@5 95.000 (87.771)
+ * Prec@1 65.568 Prec@5 87.478 Time 87.203
 
